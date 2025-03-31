@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t sathishkumar365/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t sathishkumar/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true sathishkumar365/react-test npm test
+  - docker run -e CI=true sathishkumar/react-test npm test
 
 after_success:
-  - docker build -t sathishkumar365/multi-client ./client
-  - docker build -t sathishkumar365/multi-nginx ./nginx
-  - docker build -t sathishkumar365/multi-server ./server
-  - docker build -t sathishkumar365/multi-worker ./worker
+  - docker build -t sathishkumar/multi-client ./client
+  - docker build -t sathishkumar/multi-nginx ./nginx
+  - docker build -t sathishkumar/multi-server ./server
+  - docker build -t sathishkumar/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push sathishkumar365/multi-client
-  - docker push sathishkumar365/multi-nginx
-  - docker push sathishkumar365/multi-server
-  - docker push sathishkumar365/multi-worker
+  - docker push sathishkumar/multi-client
+  - docker push sathishkumar/multi-nginx
+  - docker push sathishkumar/multi-server
+  - docker push sathishkumar/multi-worker
